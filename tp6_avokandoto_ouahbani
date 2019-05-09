@@ -44,4 +44,4 @@ Exercice 3 : Exécution de commandes en différé :at et cron
  6- Programmez l’exécution d’une commande du lundi au vendredi à 17 heures
     00 17 1-5 * * /bin/sh ls Bureau
  7- Modifiez votre crontab pour que les messages ne soient plus envoyés par mail, mais redirigés dans un fichier de log situé dans votre dossier personnel
- 
+     00 17 1-5 * * /bin/sh ls Bureau > cron.log
