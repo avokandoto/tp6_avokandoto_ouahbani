@@ -1,0 +1,20 @@
+TP6 : Gestion des disques 
+
+Exercice 1
+
+1- On configure un nouveau disque alloué dans les configurations de la VM au niveau du stockage.
+2- On vérifié que le disque /dev/sdb a bien été ajouté avec la commande fdisk -l 
+3- On crée des partitions pour le disque /dev/sdb en utilisant les commandes suivantes
+-fdisk /dev/sdb : on sélectionne le disque à partitionner
+-on choisit l'option n pour créer la partition 1 et on fait de même après pour la partition 2
+-on définit ensuite les tailles 2Go et 3Go
+-Le type est défini avec l'option t et on choisit dans la liste avec l'option L en hexa 83 pour linux et 7 pour NTFS
+4- Le formatage des disques est fait avec la commande 
+mkfs -t ext4 /dev/sdb1 pour la partition 1 et mkfs -t ntfs /dev/sdb2 pour la partition 2
+5- On ne retrouve pas le disque /dev/sdb quand on fait la commande df -T car il n'a pas encore été monté
+6- On édite le fichier /etc/fstab en ajoutant les lignes suivantes : 
+-/dev/sdb1 /mnt/data ext4 defaults 0 0
+-/dev/sdb2 /mnt/win  ntfs defaults 0 0
+7- On utilise la commande mount -a pour monter les partitions puis on redémarre la VM.
+Lorsqu'on tape la commande df -T, on voit bien la présence des partitions dans la liste des disques montés
+8- Pour monter la clé on crée un dossier cle dans /mnt et ensuite on tape la commande mount -t fat32 /dev/sdb /mnt/cle
